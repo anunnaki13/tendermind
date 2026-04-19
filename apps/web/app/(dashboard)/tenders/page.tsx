@@ -19,27 +19,38 @@ const columns = [
 
 export default function TendersPage() {
   return (
-    <section>
-      <div style={{ marginBottom: 20 }}>
-        <h1 style={{ marginBottom: 8 }}>Pipeline Tender</h1>
-        <p style={{ color: "var(--muted)" }}>
+    <section className="section-grid">
+      <div className="card hero-card feature-panel">
+        <p className="mini-heading">Pipeline View</p>
+        <h1 style={{ margin: "0 0 10px", fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.05em" }}>
+          Tender pipeline yang bersih, mudah dipindai, dan siap diisi data nyata.
+        </h1>
+        <p className="lede">
           Kanban awal untuk modul tender pipeline. Nantinya data akan ditarik dari FastAPI dan update real-time.
         </p>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 16 }}>
+
+      <div className="board">
         {columns.map((column) => (
-          <div key={column.title} className="card" style={{ padding: 16 }}>
-            <h2 style={{ marginTop: 0, fontSize: 18 }}>{column.title}</h2>
-            <div style={{ display: "grid", gap: 12 }}>
+          <div key={column.title} className="card board-column">
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
+              <h2 style={{ margin: 0, fontSize: 18 }}>{column.title}</h2>
+              <span className="badge">{column.items.length} item</span>
+            </div>
+            <div className="board-stack">
               {column.items.length ? (
                 column.items.map((item) => (
-                  <article key={item} style={{ padding: 14, borderRadius: 14, background: "white", border: "1px solid var(--line)" }}>
+                  <article key={item} className="board-card">
                     <strong>{item}</strong>
-                    <div style={{ color: "var(--muted)", fontSize: 14, marginTop: 6 }}>Placeholder tender card</div>
+                    <div className="muted" style={{ fontSize: 14, marginTop: 8, lineHeight: 1.6 }}>
+                      Placeholder tender card untuk metadata HPS, deadline, instansi, dan quick actions.
+                    </div>
                   </article>
                 ))
               ) : (
-                <div style={{ color: "var(--muted)", fontSize: 14 }}>Belum ada item</div>
+                <div className="muted" style={{ fontSize: 14 }}>
+                  Belum ada item
+                </div>
               )}
             </div>
           </div>
@@ -48,4 +59,3 @@ export default function TendersPage() {
     </section>
   );
 }
-

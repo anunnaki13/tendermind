@@ -114,33 +114,33 @@ export function CompanyProfileForm({
     <form onSubmit={handleSubmit} style={{ display: "grid", gap: 16, marginTop: 24 }}>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 16 }}>
         {fields.map((field) => (
-          <label key={field.name} style={{ display: "grid", gap: 8 }}>
-            <span style={{ fontSize: 14, color: "var(--muted)" }}>{field.label}</span>
+          <label key={field.name} className="field-label">
+            <span className="field-hint">{field.label}</span>
             <input
               value={form[field.name]}
               onChange={(event) => setForm((current) => ({ ...current, [field.name]: event.target.value }))}
-              style={{ padding: 14, borderRadius: 12, border: "1px solid var(--line)", background: "white" }}
+              className="input"
             />
           </label>
         ))}
       </div>
 
-      <label style={{ display: "grid", gap: 8 }}>
-        <span style={{ fontSize: 14, color: "var(--muted)" }}>Alamat</span>
+      <label className="field-label">
+        <span className="field-hint">Alamat</span>
         <textarea
           value={form.address}
           onChange={(event) => setForm((current) => ({ ...current, address: event.target.value }))}
           rows={3}
-          style={{ padding: 14, borderRadius: 12, border: "1px solid var(--line)", background: "white", resize: "vertical" }}
+          className="textarea"
         />
       </label>
 
-      <label style={{ display: "grid", gap: 8 }}>
-        <span style={{ fontSize: 14, color: "var(--muted)" }}>KBLI Codes</span>
+      <label className="field-label">
+        <span className="field-hint">KBLI Codes</span>
         <input
           value={form.kbli_codes}
           onChange={(event) => setForm((current) => ({ ...current, kbli_codes: event.target.value }))}
-          style={{ padding: 14, borderRadius: 12, border: "1px solid var(--line)", background: "white" }}
+          className="input"
         />
       </label>
 
@@ -148,19 +148,12 @@ export function CompanyProfileForm({
         <button
           type="submit"
           disabled={isSaving}
-          style={{
-            padding: "14px 18px",
-            borderRadius: 12,
-            border: "none",
-            background: "var(--brand)",
-            color: "white",
-            cursor: isSaving ? "not-allowed" : "pointer",
-            opacity: isSaving ? 0.7 : 1
-          }}
+          className="button-primary"
+          style={{ border: "none", cursor: isSaving ? "not-allowed" : "pointer", opacity: isSaving ? 0.7 : 1 }}
         >
           {isSaving ? "Menyimpan..." : "Simpan Company Profile"}
         </button>
-        {status ? <span style={{ color: "var(--muted)", fontSize: 14 }}>{status}</span> : null}
+        {status ? <span className="muted" style={{ fontSize: 14 }}>{status}</span> : null}
       </div>
     </form>
   );

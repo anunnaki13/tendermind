@@ -17,7 +17,7 @@ type CompanyProfile = {
 };
 
 async function getCompanyProfile(): Promise<CompanyProfile | null> {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8011";
 
   try {
     const response = await fetch(`${baseUrl}/api/v1/company/profile`, {
@@ -36,16 +36,19 @@ async function getCompanyProfile(): Promise<CompanyProfile | null> {
 
 export default async function CompanyProfilePage() {
   const profile = await getCompanyProfile();
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8011";
 
   return (
-    <section className="card" style={{ padding: 28 }}>
-      <h1 style={{ marginTop: 0 }}>Company Profile</h1>
-      <p style={{ color: "var(--muted)", lineHeight: 1.7 }}>
+    <section className="card feature-panel">
+      <p className="mini-heading">Company Module</p>
+      <h1 style={{ marginTop: 0, marginBottom: 10, fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.05em" }}>
+        Company Profile
+      </h1>
+      <p className="lede" style={{ maxWidth: 820 }}>
         Modul awal untuk `Company Profile & Document Vault`. Halaman ini sudah mencoba membaca data dari backend dan
         tetap memberi fallback jika API belum dijalankan.
       </p>
-      <dl style={{ display: "grid", gridTemplateColumns: "180px 1fr", gap: 12, marginTop: 24 }}>
+      <dl className="dl-grid">
         <dt>Perusahaan</dt>
         <dd>{profile?.name ?? "CV Panda Global Teknologi"}</dd>
         <dt>Badan Usaha</dt>
@@ -60,7 +63,7 @@ export default async function CompanyProfilePage() {
         <dd>{profile?.nib ?? "-"}</dd>
       </dl>
       {!profile ? (
-        <p style={{ marginTop: 24, color: "var(--accent)" }}>
+        <p className="status-note">
           Backend belum terhubung. Jalankan API untuk melihat data persisten dari `company profile`.
         </p>
       ) : null}
