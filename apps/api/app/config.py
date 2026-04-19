@@ -10,8 +10,10 @@ class Settings(BaseSettings):
     app_env: str = Field(default="development", alias="APP_ENV")
     app_debug: bool = Field(default=True, alias="APP_DEBUG")
     app_secret_key: str = Field(default="change_me", alias="APP_SECRET_KEY")
-    app_cors_origins: str = Field(default="http://localhost:3000", alias="APP_CORS_ORIGINS")
+    app_cors_origins: str = Field(default="http://localhost:3010", alias="APP_CORS_ORIGINS")
     database_url: str | None = Field(default=None, alias="DATABASE_URL")
+    app_host: str = Field(default="0.0.0.0", alias="APP_HOST")
+    app_port: int = Field(default=8011, alias="APP_PORT")
 
     postgres_host: str = Field(default="postgres", alias="POSTGRES_HOST")
     postgres_port: int = Field(default=5432, alias="POSTGRES_PORT")
