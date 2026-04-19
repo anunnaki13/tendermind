@@ -39,7 +39,8 @@ export function LoginForm({ apiBaseUrl }: { apiBaseUrl: string }) {
 
       localStorage.setItem("tendermind_access_token", data.access_token);
       localStorage.setItem("tendermind_user_email", data.user_email);
-      window.location.href = "/";
+      document.cookie = `tendermind_access_token=${encodeURIComponent(data.access_token)}; Max-Age=${60 * 60 * 12}; Path=/; SameSite=Lax`;
+      window.location.href = "/company/documents";
     } catch (error) {
       const message = error instanceof Error ? error.message : "Login gagal.";
       setState({ message, error: true });
