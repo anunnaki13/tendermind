@@ -6,7 +6,7 @@ from app.config import Settings, get_settings
 from app.core.security import create_access_token, decode_access_token, hash_password, verify_password
 from app.models.sql.user import User
 from app.repositories.user_repository import UserRepository
-from app.schemas.auth import CurrentUserRead, LoginRequest, TokenResponse
+from app.schemas.auth import ChangePasswordResponse, CurrentUserRead, LoginRequest, TokenResponse
 
 
 class AuthError(RuntimeError):
@@ -58,6 +58,26 @@ class AuthService:
             raise AuthError("User tidak ditemukan atau tidak aktif.")
 
         return CurrentUserRead.model_validate(user)
+
+    async def change_password(
+        self,
+        *,
+        current_user_email: str,
+        current_password: str,
+        new_password: str,
+    ) -> ChangePasswordResponse:
+        user = self.repository.get_by_email(current_user_email)
+        if user is None or not user.is_active:
+            raise AuthError("User tidak ditemukan atau tidak aktif.")
+
+        if not verify_password(current_password, user.password_hash):
+            raise AuthError("Password saat ini salah.")
+
+        if len(new_password) < 3:
+            raise AuthError("Password baru minimal 3 karakter.")
+
+        self.repository.update(user, {"password_hash": hash_password(new_password)})
+        return ChangePasswordResponse()
 
 
 def build_auth_service(repository: UserRepository) -> AuthService:

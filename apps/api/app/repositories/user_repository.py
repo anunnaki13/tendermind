@@ -18,3 +18,11 @@ class UserRepository:
         self.session.commit()
         self.session.refresh(user)
         return user
+
+    def update(self, user: User, payload: dict[str, object]) -> User:
+        for field, value in payload.items():
+            setattr(user, field, value)
+        self.session.add(user)
+        self.session.commit()
+        self.session.refresh(user)
+        return user

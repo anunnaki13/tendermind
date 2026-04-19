@@ -57,3 +57,22 @@ def test_login_with_seeded_admin_returns_bearer_token() -> None:
     data = response.json()
     assert data["token_type"] == "bearer"
     assert data["user_email"] == "admin@tendermind.local"
+
+
+def test_change_password_returns_success_for_valid_current_password() -> None:
+    client = TestClient(app)
+
+    login_response = client.post(
+        "/api/v1/auth/login",
+        json={"email": "admin@tendermind.local", "password": "123"},
+    )
+    token = login_response.json()["access_token"]
+
+    response = client.post(
+        "/api/v1/auth/change-password",
+        headers={"Authorization": f"Bearer {token}"},
+        json={"current_password": "123", "new_password": "123456"},
+    )
+
+    assert response.status_code == 200
+    assert response.json()["success"] is True

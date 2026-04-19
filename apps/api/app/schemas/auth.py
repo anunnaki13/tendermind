@@ -25,3 +25,13 @@ class CurrentUserRead(BaseModel):
     role: str
     is_active: bool
     created_at: datetime
+
+
+class ChangePasswordRequest(BaseModel):
+    current_password: str
+    new_password: str
+
+
+class ChangePasswordResponse(BaseModel):
+    success: bool = True
+    message: str = "Password berhasil diubah."
