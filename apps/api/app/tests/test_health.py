@@ -43,3 +43,17 @@ def test_documents_endpoint_returns_summary_shape() -> None:
     data = response.json()
     assert "summary" in data
     assert "items" in data
+
+
+def test_login_with_seeded_admin_returns_bearer_token() -> None:
+    client = TestClient(app)
+
+    response = client.post(
+        "/api/v1/auth/login",
+        json={"email": "admin@tendermind.local", "password": "123"},
+    )
+
+    assert response.status_code == 200
+    data = response.json()
+    assert data["token_type"] == "bearer"
+    assert data["user_email"] == "admin@tendermind.local"

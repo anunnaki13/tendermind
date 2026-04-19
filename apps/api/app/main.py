@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api.v1.router import api_router
 from app.config import get_settings
 from app.core.database import init_db
+from app.core.dependencies import get_auth_service, get_db_session
 
 settings = get_settings()
 
@@ -27,6 +28,12 @@ app.include_router(api_router, prefix="/api/v1")
 @app.on_event("startup")
 def on_startup() -> None:
     init_db()
+    session = next(get_db_session())
+    try:
+        auth_service = get_auth_service(session)
+        auth_service.seed_admin()
+    finally:
+        session.close()
 
 
 @app.get("/")

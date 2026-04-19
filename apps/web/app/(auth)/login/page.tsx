@@ -1,4 +1,8 @@
+import { LoginForm } from "@/components/auth/login-form";
+
 export default function LoginPage() {
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8011";
+
   return (
     <main className="login-shell">
       <div className="login-grid">
@@ -31,22 +35,18 @@ export default function LoginPage() {
           <p className="mini-heading">Phase 1 Access</p>
           <h2 style={{ margin: "0 0 10px", fontSize: 30, letterSpacing: "-0.04em" }}>Masuk ke TenderMind</h2>
           <p className="muted" style={{ lineHeight: 1.7 }}>
-            Untuk saat ini form ini masih visual placeholder, tetapi tampilannya sudah mengikuti visual language
-            dashboard yang baru.
+            Login sudah dihubungkan ke akun admin awal berbasis JWT. Kredensial awal sengaja dibuat sederhana untuk
+            bootstrap VPS ini dan sebaiknya nanti segera diganti.
           </p>
-          <form className="field-grid" style={{ marginTop: 24 }}>
-            <label className="field-label">
-              <span className="field-hint">Email</span>
-              <input type="email" placeholder="founder@company.com" className="input" />
-            </label>
-            <label className="field-label">
-              <span className="field-hint">Password</span>
-              <input type="password" placeholder="••••••••••••" className="input" />
-            </label>
-            <button type="submit" className="button-primary" style={{ border: "none", cursor: "pointer" }}>
-              Login
-            </button>
-          </form>
+          <div className="soft-panel" style={{ marginTop: 18 }}>
+            <strong style={{ display: "block", marginBottom: 8 }}>Akun awal</strong>
+            <div className="muted" style={{ lineHeight: 1.7 }}>
+              Email: <strong style={{ color: "var(--ink)" }}>admin@tendermind.local</strong>
+              <br />
+              Password: <strong style={{ color: "var(--ink)" }}>123</strong>
+            </div>
+          </div>
+          <LoginForm apiBaseUrl={apiBaseUrl} />
         </section>
       </div>
     </main>

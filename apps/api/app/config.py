@@ -15,6 +15,9 @@ class Settings(BaseSettings):
     app_host: str = Field(default="0.0.0.0", alias="APP_HOST")
     app_port: int = Field(default=8011, alias="APP_PORT")
     documents_storage_dir: str = Field(default="./storage/documents", alias="DOCUMENTS_STORAGE_DIR")
+    access_token_expire_minutes: int = Field(default=720, alias="ACCESS_TOKEN_EXPIRE_MINUTES")
+    admin_email: str = Field(default="admin@tendermind.local", alias="ADMIN_EMAIL")
+    admin_password: str = Field(default="123", alias="ADMIN_PASSWORD")
 
     postgres_host: str = Field(default="postgres", alias="POSTGRES_HOST")
     postgres_port: int = Field(default=5432, alias="POSTGRES_PORT")
