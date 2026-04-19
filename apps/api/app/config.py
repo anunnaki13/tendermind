@@ -14,6 +14,7 @@ class Settings(BaseSettings):
     database_url: str | None = Field(default=None, alias="DATABASE_URL")
     app_host: str = Field(default="0.0.0.0", alias="APP_HOST")
     app_port: int = Field(default=8011, alias="APP_PORT")
+    documents_storage_dir: str = Field(default="./storage/documents", alias="DOCUMENTS_STORAGE_DIR")
 
     postgres_host: str = Field(default="postgres", alias="POSTGRES_HOST")
     postgres_port: int = Field(default=5432, alias="POSTGRES_PORT")

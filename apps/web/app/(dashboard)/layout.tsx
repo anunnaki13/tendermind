@@ -5,7 +5,8 @@ const navigation = [
   { href: "/", label: "Overview", marker: "01" },
   { href: "/tenders", label: "Pipeline", marker: "02" },
   { href: "/company/profile", label: "Company Profile", marker: "03" },
-  { href: "/login", label: "Access", marker: "04" }
+  { href: "/company/documents", label: "Document Vault", marker: "04" },
+  { href: "/login", label: "Access", marker: "05" }
 ];
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {

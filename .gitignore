@@ -13,5 +13,6 @@ coverage/
 *.pyc
 *.egg-info/
 *.db
+apps/api/storage/
 apps/api/.env
 apps/web/.env

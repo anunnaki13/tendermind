@@ -31,6 +31,6 @@ def get_db_session() -> Generator[Session, None, None]:
 
 def init_db() -> None:
     from app.models.sql.company import Company
+    from app.models.sql.document import CompanyDocument
 
     Base.metadata.create_all(bind=engine)
-

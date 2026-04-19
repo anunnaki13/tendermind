@@ -399,6 +399,32 @@ main {
   font-weight: 700;
 }
 
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  border: 1px solid var(--line);
+}
+
+.status-chip.active {
+  background: rgba(0, 163, 140, 0.12);
+  color: #0b7b6b;
+}
+
+.status-chip.expiring_soon {
+  background: rgba(217, 119, 6, 0.12);
+  color: #b35f05;
+}
+
+.status-chip.expired {
+  background: rgba(197, 61, 61, 0.12);
+  color: var(--danger);
+}
+
 .login-shell {
   display: grid;
   min-height: 100vh;
