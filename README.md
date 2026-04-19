@@ -22,6 +22,20 @@ The full product definition lives in [docs/BLUEPRINT.md](docs/BLUEPRINT.md).
 - `packages/configs`: shared config placeholder
 - `infrastructure`: local Docker Compose stack
 
+## LLM Provider
+
+TenderMind is currently wired for `OpenRouter` as the LLM gateway.
+
+- provider endpoint: `https://openrouter.ai/api/v1/chat/completions`
+- parser model: configured via `OPENROUTER_PARSER_MODEL`
+- drafter model: configured via `OPENROUTER_DRAFTER_MODEL`
+- summary model: configured via `OPENROUTER_SUMMARY_MODEL`
+
+API routes:
+
+- `GET /api/v1/llm/status`
+- `POST /api/v1/llm/test`
+
 ## Quick Start
 
 1. Copy env examples:

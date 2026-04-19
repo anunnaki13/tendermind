@@ -21,3 +21,14 @@ def test_company_profile_bootstraps_default_record() -> None:
     data = response.json()
     assert data["name"] == "CV Panda Global Teknologi"
     assert data["kbli_codes"] == ["62010", "62090"]
+
+
+def test_llm_status_reports_openrouter_configuration_shape() -> None:
+    client = TestClient(app)
+
+    response = client.get("/api/v1/llm/status")
+
+    assert response.status_code == 200
+    data = response.json()
+    assert data["provider"] == "openrouter"
+    assert "base_url" in data

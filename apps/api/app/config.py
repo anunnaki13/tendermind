@@ -25,6 +25,14 @@ class Settings(BaseSettings):
     mongo_db: str = Field(default="tendermind", alias="MONGO_DB")
 
     redis_url: str = Field(default="redis://redis:6379/0", alias="REDIS_URL")
+    openrouter_api_key: str | None = Field(default=None, alias="OPENROUTER_API_KEY")
+    openrouter_base_url: str = Field(default="https://openrouter.ai/api/v1", alias="OPENROUTER_BASE_URL")
+    openrouter_app_name: str = Field(default="TenderMind", alias="OPENROUTER_APP_NAME")
+    openrouter_site_url: str | None = Field(default=None, alias="OPENROUTER_SITE_URL")
+    openrouter_parser_model: str = Field(default="openai/gpt-4.1-mini", alias="OPENROUTER_PARSER_MODEL")
+    openrouter_drafter_model: str = Field(default="anthropic/claude-3.7-sonnet", alias="OPENROUTER_DRAFTER_MODEL")
+    openrouter_summary_model: str = Field(default="openai/gpt-4.1-mini", alias="OPENROUTER_SUMMARY_MODEL")
+    llm_monthly_budget_usd: int = Field(default=50, alias="LLM_MONTHLY_BUDGET_USD")
 
     @property
     def postgres_dsn(self) -> str:
@@ -36,6 +44,10 @@ class Settings(BaseSettings):
     @property
     def effective_database_url(self) -> str:
         return self.database_url or "sqlite:///./tendermind.db"
+
+    @property
+    def openrouter_chat_completions_url(self) -> str:
+        return f"{self.openrouter_base_url.rstrip('/')}/chat/completions"
 
 
 @lru_cache
