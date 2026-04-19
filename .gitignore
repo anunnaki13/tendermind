@@ -11,5 +11,7 @@ node_modules/
 dist/
 coverage/
 *.pyc
+*.egg-info/
+*.db
 apps/api/.env
 apps/web/.env
