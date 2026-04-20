@@ -16,7 +16,7 @@ export default function HomePage() {
   return (
     <main>
       <div className="shell" style={{ padding: "30px 0 72px" }}>
-        <section className="hero-card card" style={{ padding: 34 }}>
+        <section className="hero-card card tech-frame" style={{ padding: 34 }}>
           <div
             style={{
               display: "flex",
@@ -48,9 +48,22 @@ export default function HomePage() {
                   Lihat Pipeline
                 </Link>
               </div>
+              <div className="surface-divider" style={{ margin: "26px 0 22px" }} />
+              <div className="telemetry-grid">
+                <div className="telemetry-card">
+                  <div className="telemetry-label">Signal Bus</div>
+                  <div className="telemetry-value">LPSE + BUMN</div>
+                  <div className="telemetry-note">Dirancang untuk menggabungkan beberapa sumber tender ke satu command surface.</div>
+                </div>
+                <div className="telemetry-card">
+                  <div className="telemetry-label">Draft Engine</div>
+                  <div className="telemetry-value">OpenRouter</div>
+                  <div className="telemetry-note">Parsing, summary, dan proposal drafting dipisah agar biaya tetap efisien.</div>
+                </div>
+              </div>
             </div>
 
-            <div className="soft-panel">
+            <div className="soft-panel tech-frame">
               <p className="mini-heading">Operational Focus</p>
               <div className="signal-list">
                 {operationalSignals.map((item) => (
@@ -75,18 +88,18 @@ export default function HomePage() {
         </section>
 
         <section className="data-grid" style={{ marginTop: 22 }}>
-          <article className="card feature-panel">
+          <article className="card feature-panel tech-frame">
             <p className="mini-heading">Design Direction</p>
             <h2 style={{ margin: "0 0 12px", fontSize: 28, letterSpacing: "-0.04em" }}>
-              Clean, executive, dan siap berkembang jadi produk internal yang serius
+              Clean, executive, dan sekarang bergerak ke high-tech surface yang tetap tenang
             </h2>
             <p className="muted" style={{ lineHeight: 1.75 }}>
               Antarmuka ini sekarang bergerak ke visual yang lebih tenang dan profesional: tipografi yang rapi,
-              hirarki informasi yang jelas, dan card system yang konsisten untuk data operasional.
+              hirarki informasi yang jelas, card system yang konsisten, dan detail control-surface yang lebih modern.
             </p>
           </article>
 
-          <article className="card feature-panel">
+          <article className="card feature-panel tech-frame">
             <p className="mini-heading">Core Modules</p>
             <div className="feature-list">
               <div className="feature-item">

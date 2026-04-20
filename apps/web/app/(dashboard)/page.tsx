@@ -29,7 +29,7 @@ export default function DashboardPage() {
   return (
     <section className="section-grid">
       <div className="split-hero">
-        <section className="card hero-card feature-panel">
+        <section className="card hero-card feature-panel tech-frame">
           <p className="mini-heading">Executive View</p>
           <h1 className="display section-title" style={{ marginBottom: 14 }}>
             Operational command desk untuk tender, company data, dan keputusan eksekusi.
@@ -48,7 +48,7 @@ export default function DashboardPage() {
           </div>
         </section>
 
-        <aside className="card metric-panel">
+        <aside className="card metric-panel tech-frame">
           <p className="mini-heading">Runtime Snapshot</p>
           <div className="feature-list">
             {operations.map((item) => (
@@ -73,7 +73,7 @@ export default function DashboardPage() {
       </div>
 
       <div className="data-grid">
-        <section className="card table-panel">
+        <section className="card table-panel tech-frame">
           <p className="mini-heading">Module Roadmap</p>
           <div className="feature-list">
             <div className="feature-item">
@@ -91,8 +91,20 @@ export default function DashboardPage() {
           </div>
         </section>
 
-        <section className="card table-panel">
+        <section className="card table-panel tech-frame">
           <p className="mini-heading">Design System</p>
+          <div className="telemetry-grid" style={{ marginBottom: 18 }}>
+            <div className="telemetry-card">
+              <div className="telemetry-label">Visual Tone</div>
+              <div className="telemetry-value">Clean Tech</div>
+              <div className="telemetry-note">High-tech tanpa glow berlebihan atau dashboard yang terlalu ramai.</div>
+            </div>
+            <div className="telemetry-card">
+              <div className="telemetry-label">UI Behaviour</div>
+              <div className="telemetry-value">Focused</div>
+              <div className="telemetry-note">Panel data dibuat cepat dipindai oleh owner, admin, dan estimator.</div>
+            </div>
+          </div>
           <div className="feature-list">
             <div className="feature-item">
               <strong>Typography</strong>
