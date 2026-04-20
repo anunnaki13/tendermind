@@ -6,7 +6,7 @@ export default function SettingsPage() {
   return (
     <section className="section-grid">
       <div className="split-hero">
-        <section className="card hero-card feature-panel">
+        <section className="card hero-card feature-panel tech-frame">
           <p className="mini-heading">Settings</p>
           <h1 style={{ margin: "0 0 10px", fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.05em" }}>
             Pengaturan akses admin dan kontrol keamanan dasar.
@@ -15,9 +15,21 @@ export default function SettingsPage() {
             Halaman ini menjadi titik awal untuk pengelolaan akun internal. Langkah pertama yang paling penting adalah
             mengganti password bootstrap agar akses dashboard tidak bergantung pada kredensial default.
           </p>
+          <div className="telemetry-grid" style={{ marginTop: 20 }}>
+            <div className="telemetry-card">
+              <div className="telemetry-label">Security Baseline</div>
+              <div className="telemetry-value">Bootstrap</div>
+              <div className="telemetry-note">Tahap sekarang fokus pada akses admin dasar sebelum masuk ke RBAC penuh.</div>
+            </div>
+            <div className="telemetry-card">
+              <div className="telemetry-label">Next Upgrade</div>
+              <div className="telemetry-value">Audit + Roles</div>
+              <div className="telemetry-note">Berikutnya bisa ditambah audit trail, multi-user, dan pengaturan hak akses.</div>
+            </div>
+          </div>
         </section>
 
-        <aside className="card metric-panel">
+        <aside className="card metric-panel tech-frame">
           <p className="mini-heading">Security Notes</p>
           <div className="feature-list">
             <div className="feature-item">
@@ -32,7 +44,7 @@ export default function SettingsPage() {
         </aside>
       </div>
 
-      <section className="card table-panel" style={{ maxWidth: 720 }}>
+      <section className="card table-panel tech-frame" style={{ maxWidth: 720 }}>
         <p className="mini-heading">Change Password</p>
         <ChangePasswordForm apiBaseUrl={apiBaseUrl} />
       </section>

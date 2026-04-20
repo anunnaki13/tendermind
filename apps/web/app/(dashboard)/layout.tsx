@@ -20,7 +20,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
     <AuthGuard apiBaseUrl={apiBaseUrl}>
       <main className="app-shell">
         <div className="shell app-grid">
-          <aside className="card sidebar">
+          <aside className="card sidebar tech-frame">
             <div className="brand-lockup">
               <div className="eyebrow">TenderOps</div>
               <div className="brand-title">TenderMind</div>
@@ -38,7 +38,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
               ))}
             </nav>
 
-            <div className="soft-panel" style={{ marginTop: 26 }}>
+            <div className="soft-panel tech-frame" style={{ marginTop: 26 }}>
               <p className="mini-heading">Current Focus</p>
               <strong style={{ display: "block", marginBottom: 8 }}>Foundation build on live VPS</strong>
               <p className="muted" style={{ margin: 0, lineHeight: 1.7 }}>
@@ -49,7 +49,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           </aside>
 
           <div className="content-area">
-            <header className="card topbar">
+            <header className="card topbar tech-frame">
               <div>
                 <div className="topbar-title">Operational workspace</div>
                 <strong style={{ fontSize: 24, letterSpacing: "-0.04em" }}>CV Panda Global Teknologi</strong>

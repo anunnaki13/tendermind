@@ -61,7 +61,7 @@ export default async function CompanyDocumentsPage() {
   return (
     <section className="section-grid">
       <div className="split-hero">
-        <section className="card hero-card feature-panel">
+        <section className="card hero-card feature-panel tech-frame">
           <p className="mini-heading">Document Vault</p>
           <h1 style={{ margin: "0 0 10px", fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.05em" }}>
             Vault dokumen perusahaan yang rapi, bisa dicari, dan siap dipakai untuk tender.
@@ -70,9 +70,21 @@ export default async function CompanyDocumentsPage() {
             Modul ini menjadi pondasi penyimpanan dokumen legal, sertifikasi, dan berkas pendukung perusahaan. Tahap ini
             memakai local storage di VPS agar langsung usable, sebelum nanti dipindahkan ke object storage.
           </p>
+          <div className="telemetry-grid" style={{ marginTop: 20 }}>
+            <div className="telemetry-card">
+              <div className="telemetry-label">Storage Mode</div>
+              <div className="telemetry-value">Local VPS</div>
+              <div className="telemetry-note">Tahap sekarang memakai storage lokal agar operasional bisa langsung berjalan.</div>
+            </div>
+            <div className="telemetry-card">
+              <div className="telemetry-label">Usage Flow</div>
+              <div className="telemetry-value">Ready for Drafting</div>
+              <div className="telemetry-note">Metadata dokumen bisa dipakai sebagai context untuk penyusunan proposal awal.</div>
+            </div>
+          </div>
         </section>
 
-        <aside className="card metric-panel">
+        <aside className="card metric-panel tech-frame">
           <p className="mini-heading">Vault Snapshot</p>
           <div className="feature-list">
             <div className="feature-item">
@@ -98,12 +110,12 @@ export default async function CompanyDocumentsPage() {
       </div>
 
       <div className="data-grid">
-        <section className="card table-panel">
+        <section className="card table-panel tech-frame">
           <p className="mini-heading">Upload Document</p>
           <DocumentUploadForm apiBaseUrl={apiBaseUrl} />
         </section>
 
-        <section className="card table-panel">
+        <section className="card table-panel tech-frame">
           <p className="mini-heading">Document Register</p>
           <div className="feature-list">
             {data?.items.length ? (
