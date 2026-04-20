@@ -3,10 +3,12 @@ from __future__ import annotations
 from datetime import date
 
 from app.models.sql.company import Company
+from app.models.sql.draft import DraftRecord
 from app.models.sql.document import CompanyDocument
 from app.repositories.company_repository import CompanyRepository
+from app.repositories.draft_repository import DraftRepository
 from app.repositories.document_repository import CompanyDocumentRepository
-from app.schemas.drafting import DraftGenerateRequest, DraftGenerateResponse
+from app.schemas.drafting import DraftGenerateRequest, DraftGenerateResponse, DraftHistoryItem, DraftHistoryResponse
 from app.services.llm_gateway import LLMGateway
 
 
@@ -14,14 +16,16 @@ class DraftingService:
     def __init__(
         self,
         company_repository: CompanyRepository,
+        draft_repository: DraftRepository,
         document_repository: CompanyDocumentRepository,
         llm_gateway: LLMGateway,
     ) -> None:
         self.company_repository = company_repository
+        self.draft_repository = draft_repository
         self.document_repository = document_repository
         self.llm_gateway = llm_gateway
 
-    async def generate_draft(self, payload: DraftGenerateRequest) -> DraftGenerateResponse:
+    async def generate_draft(self, payload: DraftGenerateRequest, current_user_email: str) -> DraftGenerateResponse:
         company = self.company_repository.get_singleton()
         documents = self.document_repository.list_all()
         supporting_documents = self._select_supporting_documents(documents)
@@ -35,16 +39,40 @@ class DraftingService:
             temperature=0.25,
             max_tokens=payload.max_tokens,
         )
+        record = self.draft_repository.create(
+            {
+                "document_type": payload.document_type,
+                "tender_title": payload.tender_title,
+                "tender_agency": payload.tender_agency,
+                "scope_of_work": payload.scope_of_work,
+                "evaluation_focus": payload.evaluation_focus,
+                "notes": payload.notes,
+                "tone": payload.tone,
+                "model_name": llm_response.model,
+                "content": llm_response.content,
+                "prompt_tokens": llm_response.prompt_tokens,
+                "completion_tokens": llm_response.completion_tokens,
+                "total_tokens": llm_response.total_tokens,
+                "supporting_documents": "\n".join(item.title for item in supporting_documents),
+                "created_by_email": current_user_email,
+            }
+        )
 
         return DraftGenerateResponse(
+            draft_id=record.id,
             model=llm_response.model,
             content=llm_response.content,
             supporting_documents=[item.title for item in supporting_documents],
             company_name=company.name if company else None,
+            created_at=record.created_at,
             prompt_tokens=llm_response.prompt_tokens,
             completion_tokens=llm_response.completion_tokens,
             total_tokens=llm_response.total_tokens,
         )
+
+    async def list_history(self) -> DraftHistoryResponse:
+        items = [self._serialize_history(item) for item in self.draft_repository.list_recent()]
+        return DraftHistoryResponse(items=items)
 
     def _build_system_prompt(self) -> str:
         return (
@@ -150,3 +178,23 @@ Pastikan hasilnya siap menjadi draft awal yang bisa disunting tim internal.
                 f"- {item.title} | kategori {item.category} | file {item.original_filename} | kedaluwarsa {expires_text}"
             )
         return "\n".join(lines)
+
+    def _serialize_history(self, item: DraftRecord) -> DraftHistoryItem:
+        supporting_documents = [part for part in item.supporting_documents.split("\n") if part]
+        preview = item.content[:280].strip()
+        if len(item.content) > 280:
+            preview = f"{preview}..."
+
+        return DraftHistoryItem(
+            id=item.id,
+            document_type=item.document_type,
+            tender_title=item.tender_title,
+            tender_agency=item.tender_agency,
+            tone=item.tone,
+            model_name=item.model_name,
+            supporting_documents=supporting_documents,
+            created_by_email=item.created_by_email,
+            created_at=item.created_at,
+            total_tokens=item.total_tokens,
+            content_preview=preview,
+        )

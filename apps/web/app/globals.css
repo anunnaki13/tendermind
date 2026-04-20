@@ -365,6 +365,10 @@ main {
   margin-top: 12px;
 }
 
+.draft-meta-row {
+  align-items: center;
+}
+
 .draft-output {
   white-space: pre-wrap;
   line-height: 1.8;

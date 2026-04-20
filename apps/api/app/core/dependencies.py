@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 
 from app.core.database import get_db_session
 from app.repositories.company_repository import CompanyRepository
+from app.repositories.draft_repository import DraftRepository
 from app.repositories.document_repository import CompanyDocumentRepository
 from app.repositories.user_repository import UserRepository
 from app.schemas.auth import CurrentUserRead
@@ -52,5 +53,6 @@ def get_drafting_service(
     gateway: LLMGateway = Depends(get_llm_gateway),
 ) -> DraftingService:
     company_repository = CompanyRepository(session)
+    draft_repository = DraftRepository(session)
     document_repository = CompanyDocumentRepository(session)
-    return DraftingService(company_repository, document_repository, gateway)
+    return DraftingService(company_repository, draft_repository, document_repository, gateway)
