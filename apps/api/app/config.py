@@ -33,9 +33,9 @@ class Settings(BaseSettings):
     openrouter_base_url: str = Field(default="https://openrouter.ai/api/v1", alias="OPENROUTER_BASE_URL")
     openrouter_app_name: str = Field(default="TenderMind", alias="OPENROUTER_APP_NAME")
     openrouter_site_url: str | None = Field(default=None, alias="OPENROUTER_SITE_URL")
-    openrouter_parser_model: str = Field(default="openai/gpt-4.1-mini", alias="OPENROUTER_PARSER_MODEL")
-    openrouter_drafter_model: str = Field(default="anthropic/claude-3.7-sonnet", alias="OPENROUTER_DRAFTER_MODEL")
-    openrouter_summary_model: str = Field(default="openai/gpt-4.1-mini", alias="OPENROUTER_SUMMARY_MODEL")
+    openrouter_parser_model: str = Field(default="google/gemini-2.5-flash-lite", alias="OPENROUTER_PARSER_MODEL")
+    openrouter_drafter_model: str = Field(default="openai/gpt-4.1-mini", alias="OPENROUTER_DRAFTER_MODEL")
+    openrouter_summary_model: str = Field(default="google/gemini-2.5-flash-lite", alias="OPENROUTER_SUMMARY_MODEL")
     llm_monthly_budget_usd: int = Field(default=50, alias="LLM_MONTHLY_BUDGET_USD")
 
     @property
