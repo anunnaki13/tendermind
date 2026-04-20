@@ -14,7 +14,7 @@ const navigation = [
 ];
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8011";
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL ?? "/api/proxy";
 
   return (
     <AuthGuard apiBaseUrl={apiBaseUrl}>

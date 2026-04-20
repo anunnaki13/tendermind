@@ -17,7 +17,7 @@ type CompanyProfile = {
 };
 
 async function getCompanyProfile(): Promise<CompanyProfile | null> {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8011";
+  const baseUrl = process.env.INTERNAL_API_URL ?? "http://127.0.0.1:8011";
 
   try {
     const response = await fetch(`${baseUrl}/api/v1/company/profile`, {
@@ -36,7 +36,7 @@ async function getCompanyProfile(): Promise<CompanyProfile | null> {
 
 export default async function CompanyProfilePage() {
   const profile = await getCompanyProfile();
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8011";
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL ?? "/api/proxy";
 
   return (
     <section className="card feature-panel">

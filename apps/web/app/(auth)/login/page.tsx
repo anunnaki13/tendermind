@@ -1,7 +1,7 @@
 import { LoginForm } from "@/components/auth/login-form";
 
 export default function LoginPage() {
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8011";
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL ?? "/api/proxy";
 
   return (
     <main className="login-shell">

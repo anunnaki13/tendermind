@@ -1,7 +1,7 @@
 import { ChangePasswordForm } from "@/components/auth/change-password-form";
 
 export default function SettingsPage() {
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8011";
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL ?? "/api/proxy";
 
   return (
     <section className="section-grid">

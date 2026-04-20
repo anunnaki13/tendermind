@@ -6,7 +6,7 @@ type LLMStatus = {
 };
 
 async function getLLMStatus(): Promise<LLMStatus | null> {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8011";
+  const baseUrl = process.env.INTERNAL_API_URL ?? "http://127.0.0.1:8011";
 
   try {
     const response = await fetch(`${baseUrl}/api/v1/llm/status`, {
@@ -24,7 +24,7 @@ async function getLLMStatus(): Promise<LLMStatus | null> {
 }
 
 export default async function DraftingPage() {
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8011";
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL ?? "/api/proxy";
   const llmStatus = await getLLMStatus();
 
   return (

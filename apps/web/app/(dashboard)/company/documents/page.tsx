@@ -25,7 +25,7 @@ type DocumentResponse = {
 };
 
 async function getDocuments(): Promise<DocumentResponse | null> {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8011";
+  const baseUrl = process.env.INTERNAL_API_URL ?? "http://127.0.0.1:8011";
 
   try {
     const response = await fetch(`${baseUrl}/api/v1/company/documents`, {
@@ -55,7 +55,7 @@ function statusLabel(item: DocumentItem): string {
 }
 
 export default async function CompanyDocumentsPage() {
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8011";
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL ?? "/api/proxy";
   const data = await getDocuments();
 
   return (
