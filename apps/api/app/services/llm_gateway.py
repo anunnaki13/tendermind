@@ -27,17 +27,34 @@ class LLMGateway:
         )
 
     async def send_test_prompt(self, payload: LLMTestRequest) -> LLMTestResponse:
+        return await self.generate_text(
+            prompt=payload.prompt,
+            system_prompt=payload.system_prompt,
+            model=payload.model,
+            temperature=payload.temperature,
+            max_tokens=payload.max_tokens,
+        )
+
+    async def generate_text(
+        self,
+        *,
+        prompt: str,
+        system_prompt: str,
+        model: str | None = None,
+        temperature: float = 0.2,
+        max_tokens: int = 300,
+    ) -> LLMTestResponse:
         if not self.settings.openrouter_api_key:
             raise LLMGatewayError("OPENROUTER_API_KEY is not configured.")
 
         request_payload = {
-            "model": payload.model or self.settings.openrouter_summary_model,
+            "model": model or self.settings.openrouter_summary_model,
             "messages": [
-                {"role": "system", "content": payload.system_prompt},
-                {"role": "user", "content": payload.prompt},
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": prompt},
             ],
-            "temperature": payload.temperature,
-            "max_tokens": payload.max_tokens,
+            "temperature": temperature,
+            "max_tokens": max_tokens,
         }
 
         headers = {

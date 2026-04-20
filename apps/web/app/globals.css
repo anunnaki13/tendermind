@@ -339,11 +339,40 @@ main {
   gap: 16px;
 }
 
+.drafting-grid {
+  display: grid;
+  grid-template-columns: minmax(340px, 0.9fr) minmax(0, 1.1fr);
+  gap: 18px;
+}
+
 .soft-panel {
   padding: 20px;
   border-radius: 18px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(244, 248, 252, 0.86));
   border: 1px solid var(--line);
+}
+
+.draft-output-shell {
+  display: grid;
+  gap: 14px;
+}
+
+.draft-meta-row,
+.draft-tag-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.draft-output {
+  white-space: pre-wrap;
+  line-height: 1.8;
+  padding: 22px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(247, 250, 252, 0.92));
+  font-size: 15px;
 }
 
 .kpi-row {
@@ -519,6 +548,7 @@ main {
 @media (max-width: 1024px) {
   .app-grid,
   .split-hero,
+  .drafting-grid,
   .login-grid {
     grid-template-columns: 1fr;
   }

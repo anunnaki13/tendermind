@@ -9,6 +9,7 @@ from app.repositories.user_repository import UserRepository
 from app.schemas.auth import CurrentUserRead
 from app.services.auth_service import AuthError, AuthService, build_auth_service
 from app.services.company_service import CompanyService
+from app.services.drafting_service import DraftingService
 from app.services.document_service import CompanyDocumentService
 from app.services.document_storage import DocumentStorageService
 from app.services.llm_gateway import LLMGateway, build_llm_gateway
@@ -44,3 +45,12 @@ async def get_current_user(
 
 def get_llm_gateway() -> LLMGateway:
     return build_llm_gateway()
+
+
+def get_drafting_service(
+    session: Session = Depends(get_db_session),
+    gateway: LLMGateway = Depends(get_llm_gateway),
+) -> DraftingService:
+    company_repository = CompanyRepository(session)
+    document_repository = CompanyDocumentRepository(session)
+    return DraftingService(company_repository, document_repository, gateway)

@@ -6,10 +6,11 @@ import { LogoutButton } from "@/components/auth/logout-button";
 const navigation = [
   { href: "/", label: "Overview", marker: "01" },
   { href: "/tenders", label: "Pipeline", marker: "02" },
-  { href: "/company/profile", label: "Company Profile", marker: "03" },
-  { href: "/company/documents", label: "Document Vault", marker: "04" },
-  { href: "/settings", label: "Settings", marker: "05" },
-  { href: "/login", label: "Access", marker: "06" }
+  { href: "/drafting", label: "Drafting Studio", marker: "03" },
+  { href: "/company/profile", label: "Company Profile", marker: "04" },
+  { href: "/company/documents", label: "Document Vault", marker: "05" },
+  { href: "/settings", label: "Settings", marker: "06" },
+  { href: "/login", label: "Access", marker: "07" }
 ];
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
@@ -41,8 +42,8 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
               <p className="mini-heading">Current Focus</p>
               <strong style={{ display: "block", marginBottom: 8 }}>Foundation build on live VPS</strong>
               <p className="muted" style={{ margin: 0, lineHeight: 1.7 }}>
-                Web berjalan di port `3010`, API di `8011`, dan struktur siap diteruskan ke crawler, matching, dan
-                document vault.
+                Web berjalan di port `3010`, API di `8011`, dan sistem sekarang sudah masuk ke tahap drafting berbasis
+                OpenRouter untuk proposal tender internal.
               </p>
             </div>
           </aside>
@@ -56,7 +57,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
               <div className="topbar-meta">
                 <span className="pill">Web :3010</span>
                 <span className="pill">API :8011</span>
-                <span className="pill">Phase 1 Foundation</span>
+                <span className="pill">OpenRouter Drafting</span>
                 <LogoutButton />
               </div>
             </header>
